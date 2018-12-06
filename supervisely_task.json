@@ -1,0 +1,47 @@
+[
+  {
+    "dst": "$data",
+    "src": [
+      "Supervisely Person Dataset/*"
+    ],
+    "action": "data",
+    "settings": {
+      "classes_mapping": "default"
+    }
+  },
+  {
+    "dst": "$resized",
+    "src": [
+      "$data"
+    ],
+    "action": "resize",
+    "settings": {
+      "width": 640,
+      "height": 640,
+      "aspect_ratio": {
+        "keep": true
+      }
+    }
+  },
+  
+  {
+    "dst": "$saved_masks",
+    "src": [
+      "$resized"
+    ],
+    "action": "save_masks",
+    "settings": {
+      "images": true,
+      "annotations": true,
+      "masks_human": false,
+      "masks_machine": true,
+      "gt_machine_color": {
+        "person_poly": [
+          255,
+          255,
+          153
+        ]
+       }
+    }
+  }
+]
